@@ -6,16 +6,16 @@ use App\Core\Application;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\{Request};
 use Symfony\Component\HttpKernel\Controller\{ArgumentResolver, ControllerResolver};
-use Symfony\Component\Routing;
+use Symfony\Component\Routing\{Matcher\UrlMatcher, RequestContext};
 
 Debug::enable();
 
 
-$request = Request::createFromGlobals();
-$routes  = include __DIR__.'/src/routes.php';
+$routes = include __DIR__.'/src/routes.php';
 
-$context            = new Routing\RequestContext();
-$matcher            = new Routing\Matcher\UrlMatcher($routes, $context);
+$request            = Request::createFromGlobals();
+$context            = new RequestContext(method: $request->getMethod());
+$matcher            = new UrlMatcher($routes, $context);
 $controllerResolver = new ControllerResolver();
 $argumentResolver   = new ArgumentResolver();
 

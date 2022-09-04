@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\HelloController;
-use Symfony\Component\Routing;
-use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\{Route, RouteCollection};
 
-$routes = new Routing\RouteCollection();
+$routes = new RouteCollection();
 
-
-$routes->add('hello', new Route('/hello/{name}', [
-   '_controller' => [HelloController::class, 'index']
-]));
+$routes->add(
+    'hello',
+    new Route(path: '/hello/{name}', defaults: [
+        '_controller' => [HelloController::class, 'index'],
+    ], methods:     ['DELETE'])
+);
 
 return $routes;
