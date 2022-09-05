@@ -21,5 +21,9 @@
       "App\\":   "src/",
       "Tests\\": "tests/"
     }
+  },
+  "scripts": {
+    "phpunit-cov": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
+    "phpunit-cov-html": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html"
   }
 }
