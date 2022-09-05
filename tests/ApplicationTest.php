@@ -5,12 +5,9 @@ namespace Tests;
 use App\Core\Application;
 use App\Http\Controllers\HelloController;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
-use Symfony\Component\HttpKernel\Controller\ControllerResolver;
-use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
+use RuntimeException;
+use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpKernel\Controller\{ArgumentResolver, ArgumentResolverInterface, ControllerResolver, ControllerResolverInterface};
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 
@@ -26,7 +23,7 @@ class ApplicationTest extends TestCase
 
     public function testErrorHandling()
     {
-        $framework = $this->getApplicationForException(new \RuntimeException());
+        $framework = $this->getApplicationForException(new RuntimeException());
         $response  = $framework->handle(new Request());
 
         $this->assertEquals(500, $response->getStatusCode());
@@ -52,7 +49,7 @@ class ApplicationTest extends TestCase
         $this->assertStringContainsString('Hello World', $response->getContent());
     }
 
-    private function getApplicationForException($exception)
+    private function getApplicationForException($exception): Application
     {
         $matcher = $this->createMock(UrlMatcherInterface::class);
         $matcher->expects($this->once())->method('match')->will($this->throwException($exception));
