@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
 use Symfony\Component\HttpKernel\Controller\{ArgumentResolverInterface, ControllerResolverInterface};
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
@@ -30,8 +30,16 @@ class Application
         } catch (ResourceNotFoundException $exception) {
             return new Response('Not Found', Response::HTTP_NOT_FOUND);
         } catch (\Exception $exception) {
-            return new Response('Internal server error', Response::HTTP_INTERNAL_SERVER_ERROR);
+            $data = [
+                'error' => [
+                    'message' => 'Internal server error',
+                    'exception' => $exception->getMessage(),
+                    'code' => $exception->getCode(),
+                    'trace' => $exception->getTraceAsString()
+                ]
+            ];
+            $response = new JsonResponse($data, Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $response;
         }
     }
-
 }
