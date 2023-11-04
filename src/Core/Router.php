@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Core;
+namespace Core;
 
 use Symfony\Component\Routing\Route;
 
 class Router
 {
+    /** @var Route[]  */
     private static array $routes = [];
 
     public static function get(string $path, $handler): void
@@ -43,6 +44,9 @@ class Router
         );
     }
 
+    /**
+     * @return Route[]
+     */
     public static function getRoutes(): array
     {
         return self::$routes;
