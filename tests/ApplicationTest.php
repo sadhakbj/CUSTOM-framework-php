@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Core\Application;
 use App\Http\Controllers\HelloController;
+use Core\Application;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\{Request, Response};

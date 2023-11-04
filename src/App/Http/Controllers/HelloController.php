@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class HelloController
 {
-    public function sayHello()
+    public function sayHello(): JsonResponse
     {
         return new JsonResponse(["Hello welcome to my app"]);
     }
-    public function index(string $name): Response
+    public function index(string $name): JsonResponse
     {
         return new JsonResponse("Hello $name");
     }

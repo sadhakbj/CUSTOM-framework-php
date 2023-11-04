@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once  dirname(__DIR__) . '/vendor/autoload.php';
 
-use App\Core\Application;
+use Core\Application;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\{Request};
 use Symfony\Component\HttpKernel\Controller\{ArgumentResolver, ControllerResolver};
@@ -11,7 +11,7 @@ use Symfony\Component\Routing\{Matcher\UrlMatcher, RequestContext};
 Debug::enable();
 
 
-$routes = include __DIR__ . '/src/routes.php';
+$routes = require_once __DIR__ . '/../src/routes.php';
 
 $request            = Request::createFromGlobals();
 $context            = new RequestContext(method: $request->getMethod());

@@ -1,24 +1,25 @@
 {
-  "name":        "bijaya.kuikel/symfony",
-  "authors":     [
+  "name": "bijaya.kuikel/symfony",
+  "authors": [
     {
-      "name":  "Bijaya Prasad Kuikel",
+      "name": "Bijaya Prasad Kuikel",
       "email": "sadhakbj@gmail.com"
     }
   ],
-  "require":     {
+  "require": {
     "symfony/http-foundation": "^6.1",
-    "symfony/routing":         "^6.1",
-    "symfony/http-kernel":     "^6.1",
-    "symfony/error-handler":   "^6.1"
+    "symfony/routing": "^6.1",
+    "symfony/http-kernel": "^6.1",
+    "symfony/error-handler": "^6.1"
   },
   "require-dev": {
     "symfony/var-dumper": "^6.1",
-    "phpunit/phpunit":    "^9.5"
+    "phpunit/phpunit": "^9.5"
   },
-  "autoload":    {
+  "autoload": {
     "psr-4": {
-      "App\\":   "src/",
+      "App\\": "src/App",
+      "Core\\": "src/Core",
       "Tests\\": "tests/"
     }
   },
