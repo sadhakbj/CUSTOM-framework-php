@@ -51,8 +51,8 @@ class Application
                     'trace' => $exception->getTraceAsString(),
                 ],
             ];
-            $response = new JsonResponse($data, Response::HTTP_INTERNAL_SERVER_ERROR);
-            return $response;
+
+            return new JsonResponse($data, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
